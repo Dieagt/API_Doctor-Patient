@@ -17,8 +17,25 @@ public record DatosRegistroPaciente(
         @NotBlank
         //@Pattern(regexp = "\\\\d{3}\\\\.?\\\\d{3}\\\\.?\\\\d{3}\\\\-?\\\\d{2}
         @Pattern (regexp = "[0-9]{4}")
-        @Column (name = "documento_identidad")
         String documentoIdentidad,
         @NotNull
         @Valid
-        DatosDireccion direccion) { }
+        DatosDireccion direccion) {
+
+        public DatosRegistroPaciente(Paciente paciente) {
+                this(
+                        paciente.getNombre(),
+                        paciente.getEmail(),
+                        paciente.getTelefono(),
+                        paciente.getDocumentoIdentidad(),
+                        new DatosDireccion(
+                                paciente.getDireccion().getCalle(),
+                                paciente.getDireccion().getNumero(),
+                                paciente.getDireccion().getComplemento(),
+                                paciente.getDireccion().getDistrito(),
+                                paciente.getDireccion().getCiudad()
+                        )
+                );
+        }
+
+}

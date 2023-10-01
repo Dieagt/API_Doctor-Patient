@@ -19,7 +19,6 @@ public class Paciente {
     private Long id;
     private String nombre;
     private String email;
-    @Column (name = "documentoIdentidad")
     private String documentoIdentidad;
     private String telefono;
     @Embedded
