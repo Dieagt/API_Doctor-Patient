@@ -31,4 +31,10 @@ public class PacienteController {
     public void actualizar(@RequestBody @Valid DatosActualizarPaciente datos) {
         repository.getReferenceById(datos.id()).actualizar(datos);
     }
+
+    @DeleteMapping ("/{id}")
+    @Transactional
+    public void eliminar(@PathVariable Long id){
+        repository.deleteById(id);
+    }
 }
